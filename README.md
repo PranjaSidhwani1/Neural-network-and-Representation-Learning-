@@ -1,4 +1,4 @@
-# Assignment 3 (Part I): Learning with Neural Networks
+Learning with Neural Networks
 
 <aside>
 💡
