@@ -1,10 +1,5 @@
 # Learning with Neural Networks
 
-<aside>
-💡
-
-This is part 1 of the assignment. We will release part 2 in coming days and appropriate time will be given for same.
-
 </aside>
 
 # Introduction
