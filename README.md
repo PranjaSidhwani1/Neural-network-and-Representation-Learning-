@@ -160,85 +160,7 @@ torch.manual_seed(0)
     - **Effect of Model optimisation** : Create a table detailing the **validation accuracy** for data augmentation, regularization technique used (e.g., L2 regularization, dropout), and discuss how these techniques impacted the model's performance.
     - **Class Activation Maps (CAM)**: For each class, provide visualizations of the **Class Activation Maps** and explain your observations. Discuss how the model interprets different regions of the image for each class and what insights you can draw from the highlighted areas.
 
-# Starter Code
-
-### Getting Started
-
-Started code is available on the Moodle and have following structure:
-
-```python
-A3
-|- enviroment.yaml #contains all the required libraries 
-|- install.sh # install all the dependencies.
-|- bird.py # Add all your code here.
-|- run.ipynb # Contains instructions to run the code. 
-|- Dataset # Download from kaggle 
-```
-
-> Check run.ipynb to setup the environment and dataset.
-> 
-
-## Development Environment
-
-You can develop your solution either using your local setup or Kaggle. We recommend using Kaggle as it provide GPUs that can be helpful in model training. 
-
-- Local setup: You can create a Python environment on your machine with `conda` using the command `conda env create -f environment.yml` . Here, `environment.yml` file is available with the starter code.
-- You can setup kaggle following the instructions here:
-
-Dataset link is provided in the document below. You can directly import the dataset to Kaggle using name [**Identify-the-Birds**](https://www.kaggle.com/datasets/aayushkt/identify-the-birds)
-
-[instructionsA3.pdf](instructionsA3.pdf)
-
-# Submission Guidelines
-
-- **This assignment is to be done individually or in pairs. The choice is entirely yours.**
-- **The assignment is intended for both COL333 and COL671 students.** If the assignment is being done in pairs then the partner is to be selected only within your class. That is COL333 students should be paired within COL333 and similarly masters students in COL671 should pair within their class of COL671.
-- You should upload the your model in google drive and make use you make the file accessible to anyone with the link. Create a txt file with name model_path.txt and in first line put the link of your best model.  Ensure that there is not modification after the deadline.
-- Please include the report (based on the description provided above). The first line of the report should list the name and entry number of student(s) who submit the assignment. Kindly restrict the report to 3 pages.  The report also carries some marks.
-- The assignment is to be submitted on **Gradescope**. Exactly ONE of the team members needs to make the submission. All registered students have already been added to Gradescope. The details are given below.
-    - You need to upload a single ZIP file named `"submission.zip"`. Upon unzipping, this zip should create a folder containing `bird.py`, `model_path.txt` , `group.txt` and report with name `2020CSZ1234_2020CSZ5678.pdf` . Do not rename the zip file.
-    - The group.txt should include the entry numbers of all the group members (one per line). If you are working alone, simply include your own entry numbers. A sample `group.txt` is given below.
-        
-        ```
-        2020CSZ1234
-        2020CSZ5678
-        ```
-        
-    - If you are working in pairs, you should select the partner using the “**Group Members**”  option after uploading the submission in Gradescope.
-- **The submission deadline is 6 PM on Wednessday, November 6th , 2024.**
-- This assignment (part I + part II) will carry $12$( $\pm3$)% of the grade.
-
-## Other Instructions
-
-- Late submission deduction of (10% per day) will be awarded. Late submissions will be accepted till 2 days after the submission deadline. There are no buffer days. Hence, please submit by the submission date.
-- Please follow the assignment guidelines. Failure to do so would cause exclusion from assessment and award of a reduction (at least 10%). Please strictly **adhere** to the input/output syntax specified in the assignment as the submissions are processed using scripts. Failure to do so stall evaluations and takes away time from other course activities.
-- Please do not modify files beyond the files you are supposed to modify. Failure to do so would cause exclusion from assessment/reduction.
-- Queries (if any) should be raised on **Piazza**. Please keep track of Piazza posts. Any updates to the assignment statement will be discussed over Piazza.  Please do not use email or message on Teams for assignment queries.
-- **Please only submit work from your own efforts.** Do not look at or refer to code written by anyone else. You may discuss the problem, however the code implementation must be original. Discussion will not be grounds to justify software plagiarism. Please do not copy existing assignment solutions from the internet or taken from past submission or submissions from other students; your submission will be compared against them using plagiarism detection software. Violations to the honour code will result in deductions as per course and institute policies.
-
-## References
-
-Primary reference are the lecture notes. The Russell and Norvig AIMA text book has related material in Chapter 18 (third edition) and Chapter 22 (fourth edition) respectively. 
-
-[1]: Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
-
-[2]: Dropout: A Simple Way to Prevent Neural Networks from Overfitting.
-
-[[3]: Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization](https://arxiv.org/pdf/1610.02391)
-
-PyTorch Tutorials:  [https://pytorch.org/tutorials/](https://pytorch.org/tutorials/)
-
-PyTorch Tutorial slides presented by the TA in class: [pytorch_tutorial.pptx](https://csciitd-my.sharepoint.com/:p:/g/personal/csz218035_iitd_ac_in/Ee20knd0PwBBoLyf0PYr33oBAazdB-M4MFwbsr4rA6ExAw?e=vpDqZy)
-
-Training an image classifier: [https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
-
-Among deep learning specific text books, this text book (available [online](https://udlbook.github.io/udlbook/)) is a handy reference. Note that in this course we only cover an overview of deep learning. 
-
- 
-****
-
-
-# Assignment 3 (Part II): Representation Learning
+# Representation Learning
 
 # Introduction
 
@@ -463,74 +385,26 @@ python vae.py path_to_dataset test_classifier model_load_path gmm_params_path
 
 We will use average of ‘Macro’ and ‘Micro’ F1 score to evaluate the performance of your model.
 
-# Other Guidelines
-
-- **Architecture:** We encourage the use of Multilayer perceptron (MLP) as encoder and decoder in VAE. You are free to use CNN based architectures as well. However, you should be able to get a decent performance using MLP.  The use of **pre-trained features** from ResNet, AlexNet or Vision Transformers is **not** permitted (since our focus in on basic deep learning in this course) and will not be useful. Similarly, direct import / use of existing implementation of common models such as ResNet, AlexNet etc. is **not** permitted.
-- **Training time :** We expect the training time for your model to not exceed 1 hours.
-- **Model size:** You should be able to get a good performance with 10 million parameters.  Feel free to try varying number of layers, but ensure that the model size should not exceed 20 million parameters.
-
-```python
-# Calculate the number of parameters
-num_params = sum(p.numel() for p in model.parameters())
-print(f"Total number of parameters: {num_params}")
-```
-
-- Set the seed  to following to ensure that your model gets the same performance of our system.
-
-```python
-import torch
-torch.manual_seed(0)
-```
-
-- Your submission should include the trained network model. Please upload it to Google Drive and provide a shareable link in your `model_path.txt` file. This step supports reproducibility, which is an increasingly essential requirement in both industry and research.
-- Use of  `sklearn` is only allowed for calculating metrics. Don’t do any additional imports of `sklearn` than what is already provided in the starter code.
-
-# Starter Code
-
-### Getting Started
-
-Started code is available on the Moodle and have following structure:
-
-```python
-A3
-|- enviroment.yaml #contains all the required libraries 
-|- install.sh # install all the dependencies.
-|- vae.py # Add all your code here.
-|- run.ipynb # Contains instructions to run the code. 
-|- Dataset # Download from kaggle or using the drive link
-```
-
-> Check run.ipynb to setup the environment and dataset.
-
-- The development environment, local or kaggle setup is similar to that of Part I.
-- Dataset link is provided  [Here](https://drive.google.com/drive/folders/1CLxNjtoLfV9e678kXr_21wiD_yoxpkDZ?usp=sharing)
-
-# Submission Guidelines
-
-- You should upload the your model in google drive and make use you make the file accessible to anyone with the link. Create a txt file with name model_path.txt and in first line put the link of your best model.  Ensure that there is not modification after the deadline.
-- Please include the report (based on the description provided above). The first line of the report should list the name and entry number of student(s) who submit the assignment. Kindly restrict the report to 3 pages.  The report also carries some marks.
-- The assignment is to be submitted on **Gradescope**. Exactly ONE of the team members needs to make the submission. All registered students have already been added to Gradescope. The details are given below.
-  - You need to upload a single ZIP file named `"submission.zip"`. Upon unzipping, this zip should create a folder containing `vae.py`, `model_path.txt` , `group.txt` and report with name `2020CSZ1234_2020CSZ5678.pdf` . Do not rename the zip file.
-  - The group.txt should include the entry numbers of all the group members (one per line). If you are working alone, simply include your own entry numbers. A sample `group.txt` is given below.
-
-    ```
-    2020CSZ1234
-    2020CSZ5678
-    ```
-  - If you are working in pairs, you should select the partner using the “**Group Members**”  option after uploading the submission in Gradescope.
-- **The submission is due on 6 PM on Monday, November 11th , 2024. The assignment can be submitted after the due date for up to three days (till the last teaching day) for a 5%, 10% and 15% adjustment to the score.**
-
-## Other Instructions
-
-- ~~Late submission deduction of (10% per day) will be awarded. Late submissions will be accepted till 2 days after the submission deadline.~~ The assignment can be submitted till 14th November for a 5%, 10% and 15% adjustment.
-- Hence, please submit by the submission date.
-- Please follow the assignment guidelines. Failure to do so would cause exclusion from assessment and award of a reduction (at least 10%). Please strictly **adhere** to the input/output syntax specified in the assignment as the submissions are processed using scripts. Failure to do so stall evaluations and takes away time from other course activities.
-- Please do not modify files beyond the files you are supposed to modify. Failure to do so would cause exclusion from assessment/reduction.
-- Queries (if any) should be raised on **Piazza**. Please keep track of Piazza posts. Any updates to the assignment statement will be discussed over Piazza.  Please do not use email or message on Teams for assignment queries.
-- **Please only submit work from your own efforts.** Do not look at or refer to code written by anyone else. You may discuss the problem, however the code implementation must be original. Discussion will not be grounds to justify software plagiarism. Please do not copy existing assignment solutions from the internet or taken from past submission or submissions from other students; your submission will be compared against them using plagiarism detection software. Violations to the honour code will result in deductions as per course and institute policies.
-
 # References
 
+Primary reference are the lecture notes. The Russell and Norvig AIMA text book has related material in Chapter 18 (third edition) and Chapter 22 (fourth edition) respectively. 
+
+[1]: Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
+
+[2]: Dropout: A Simple Way to Prevent Neural Networks from Overfitting.
+
+[[3]: Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization](https://arxiv.org/pdf/1610.02391)
+
+PyTorch Tutorials:  [https://pytorch.org/tutorials/](https://pytorch.org/tutorials/)
+
+PyTorch Tutorial slides presented by the TA in class: [pytorch_tutorial.pptx](https://csciitd-my.sharepoint.com/:p:/g/personal/csz218035_iitd_ac_in/Ee20knd0PwBBoLyf0PYr33oBAazdB-M4MFwbsr4rA6ExAw?e=vpDqZy)
+
+Training an image classifier: [https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
+
+Among deep learning specific text books, this text book (available [online](https://udlbook.github.io/udlbook/)) is a handy reference. Note that in this course we only cover an overview of deep learning. 
 - Implementation of VAE using neural network: [https://www.jeremyjordan.me/variational-autoencoders/](https://www.jeremyjordan.me/variational-autoencoders/)
 - Intuitive understanding of VAE: [https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf)
 - Original VAE paper (more mathematical; you can skip this if you want): [https://arxiv.org/abs/1312.6114](https://arxiv.org/abs/1312.6114)
+ 
+****
+
