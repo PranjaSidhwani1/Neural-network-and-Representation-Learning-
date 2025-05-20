@@ -1,4 +1,4 @@
-Learning with Neural Networks
+## Learning with Neural Networks
 
 <aside>
 💡
